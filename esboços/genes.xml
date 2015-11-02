@@ -1,0 +1,4 @@
+<gene name="daltonismo" cromossomo="X" id="42"><!--cromossomo = {X, Y, autossomico}-->
+    <alelo dominancia="1" name="saudavel"></alelo>
+    <alelo dominancia="2" name="afetado"></alelo>
+</gene>
