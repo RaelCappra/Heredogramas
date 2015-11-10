@@ -1,10 +1,13 @@
 <?xml version="1.0"?>
-
-<gene name="daltonismo" cromossomo="X" id="42"
+<genes
 xmlns="http://www.w3schools.com"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.w3schools.com genes.xsd">
-<!--cromossomo = {X, Y, autossomico}-->
-    <alelo dominancia="1" name="saudavel"></alelo>
-    <alelo dominancia="2" name="afetado"></alelo>
-</gene>
+
+    <gene name="daltonismo" cromossomo="X" id="42">
+    <!--cromossomo = {X, Y, autossomico}-->
+        <alelo dominancia="1" name="saudavel"></alelo>
+        <alelo dominancia="2" name="afetado"></alelo>
+    </gene>
+
+</genes>
