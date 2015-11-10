@@ -1,4 +1,24 @@
 <html>
+<meta charset="UTF-8">
+<body>
+    <div id="heredograma" class="heredograma"> 
+        <div class="geracao" id="0">
+            <button onclick="addPessoa()" id="add-pessoa0">+ Pessoa</button>
+        </div> 
+        <hr>
+        <div class="geracao" id="1">
+            <button onclick="addPessoa()" id="add-pessoa1">+ Pessoa</button>
+        </div> 
+        <hr>
+        <div class="geracao" id="2">
+            <button onclick="addPessoa()" id="add-pessoa2">+ Pessoa</button>
+        </div> 
+        <hr>
+        <div class="geracao" id="3">
+            <button onclick="addPessoa()" id="add-pessoa3">+ Pessoa</button>
+            <button onclick="addGeracao()" id="add-geracao">+ Geração</button>
+        </div> 
+    </div> 
 <script type="text/javascript">
 var heredograma = {
     geracoes : [
@@ -18,9 +38,33 @@ var heredograma = {
         }
     ]
 }
+
+var root = document.getElementById("heredograma")
+
+function addGeracao(){
+    botao = document.getElementById("add-geracao")
+    newgen = document.createElement("div")
+    newgen.setAttribute("class", "geracao")
+
+    id = parseInt(botao.parentElement.id)
+    newgen.setAttribute("id", id + 1)
+
+    botaoPessoa = document.createElement("button")
+    botaoPessoa.setAttribute("onclick", "addPessoa")
+    botaoPessoa.setAttribute("id", "add-pessoa" + (id + 1))
+    botaoPessoa.textContent = "+ Pessoa"
+
+    newgen.appendChild(botaoPessoa)
+    newgen.appendChild(botao)
+
+    hr = document.createElement("hr")
+    root.appendChild(hr)
+    root.appendChild(botaoPessoa)
+    root.appendChild(botao)
+
+
+}
 </script>
-<body>
-    
 </body>
 </html>
 
