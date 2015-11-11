@@ -1,21 +1,26 @@
 <html>
 <meta charset="UTF-8">
+<head>
+	<script src="jquery-1.11.3.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<script src="placeholder.js"></script>
+</head>
 <body>
     <div id="heredograma" class="heredograma"> 
         <div class="geracao" id="0">
-            <button onclick="addPessoa()" id="add-pessoa0">+ Pessoa</button>
+            <button onclick="addPessoa(0)">+ Pessoa</button>
         </div> 
         <hr>
         <div class="geracao" id="1">
-            <button onclick="addPessoa()" id="add-pessoa1">+ Pessoa</button>
+            <button onclick="addPessoa(1)">+ Pessoa</button>
         </div> 
         <hr>
         <div class="geracao" id="2">
-            <button onclick="addPessoa()" id="add-pessoa2">+ Pessoa</button>
+            <button onclick="addPessoa(2)">+ Pessoa</button>
         </div> 
         <hr>
         <div class="geracao" id="3">
-            <button onclick="addPessoa()" id="add-pessoa3">+ Pessoa</button>
+            <button onclick="addPessoa(3)">+ Pessoa</button>
             <button onclick="addGeracao()" id="add-geracao">+ Geração</button>
         </div> 
     </div> 
@@ -50,8 +55,7 @@ var root = document.getElementById("heredograma")
 	    newgen.setAttribute("id", id + 1)
 
 	    botaoPessoa = document.createElement("button")
-	    botaoPessoa.setAttribute("onclick", "addPessoa")
-	    botaoPessoa.setAttribute("id", "add-pessoa" + (id + 1))
+	    botaoPessoa.setAttribute("onclick", "addPessoa("+(id + 1)+")")
 	    botaoPessoa.textContent = "+ Pessoa"
 
 	    newgen.appendChild(botaoPessoa)
