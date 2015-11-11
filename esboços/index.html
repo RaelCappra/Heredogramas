@@ -28,32 +28,11 @@
         </div> 
     </div> 
 <script type="text/javascript">
-function loadXml(file){
-    xmlObject = $.get(file)
-    return xmlObject.responseXML
-} 
-var heredograma = {
-    geracoes : [
-        {
-            pessoas : [
-                {
-                    id : "1",
-                    geracao: 0,
-                    afetado : true,
-                    sexo : "M",
-                    filhos : [
-                    {conjuje: "2", filho: "4"},
-                    {conjuje: "2", filho: "5"}
-                    ]
-                }
-            ],
-        }
-    ]
-}
-$(function() {
+
+/*$(function() {
     $( document ).tooltip();
 });
-
+*/
 var root = document.getElementById("heredograma")
 
     function addGeracao(){
