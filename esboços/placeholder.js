@@ -1,5 +1,9 @@
 function addPessoa(geracao){
-	
+	alert(geracao)
+	gen = document.getElementById(geracao)
+	nome  = document.createElement("p")
+	nome.textContent = "nome"
+	gen.appendChild(nome)
 
 	/*
 	botao = document.getElementById("add-geracao")
