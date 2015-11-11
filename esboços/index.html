@@ -10,10 +10,16 @@
     
 </head>
 <body>
+
     <style>
         .ui-widget-content { width: 150px; height: 150px; padding: 0.5em; }
         
     </style>
+
+<select name="gene">
+    <option value="" disabled selected>--selecione--</option>
+</select>
+
     <div id="heredograma" class="heredograma"> 
         <div class="geracao" id="0">
             <button onclick="addPessoa(0)">+ Pessoa</button>
@@ -33,6 +39,10 @@
         </div> 
     </div> 
 <script type="text/javascript">
+function loadXml(file){
+    xmlObject = $.get(file)
+    return xmlObject.responseXML
+} 
 var heredograma = {
     geracoes : [
         {
