@@ -20,7 +20,7 @@
         </div> 
         <hr>
         <div class="geracao" id="3">
-            <button onclick="addPessoa(3)">+ Pessoa</button>
+            <button onclick="addPessoa(3)" title="testan">+ Pessoa</button>
             <button onclick="addGeracao()" id="add-geracao">+ Geração</button>
         </div> 
     </div> 
@@ -43,6 +43,9 @@ var heredograma = {
         }
     ]
 }
+$(function() {
+    $( document ).tooltip();
+});
 
 var root = document.getElementById("heredograma")
 
