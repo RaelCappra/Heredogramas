@@ -1,9 +1,25 @@
+$(function() {
+            $( "#id_pessoa" ).draggable({ containment: "parent" });
+        });
+    
+ 
 function addPessoa(geracao){
-	alert(geracao)
+	newgen = document.createElement("div")
 	gen = document.getElementById(geracao)
 	nome  = document.createElement("p")
 	nome.textContent = "nome"
-	gen.appendChild(nome)
+	newgen.setAttribute("title", "Genotipo")
+	//id="draggable"
+	//class="ui-widget-content"
+	newgen.setAttribute("id", "id_pessoa")
+	
+	newgen.setAttribute("class", "ui-widget-content")
+	newgen.appendChild(nome)
+	//newgen.draggable();
+	//nome.setAttribute("style", "widht:30px")
+	gen.appendChild(newgen)
+	
+	
 
 	/*
 	botao = document.getElementById("add-geracao")
