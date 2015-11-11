@@ -4,11 +4,22 @@
     <script src="jquery-1.11.3.min.js"></script>
     <script src="jquery-ui.min.js"></script>
     <script src="placeholder.js"></script>
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    
+    
+    
 </head>
 <body>
+
+    <style>
+        .ui-widget-content { width: 150px; height: 150px; padding: 0.5em; }
+        
+    </style>
+
 <select name="gene">
     <option value="" disabled selected>--selecione--</option>
 </select>
+
     <div id="heredograma" class="heredograma"> 
         <div class="geracao" id="0">
             <button onclick="addPessoa(0)">+ Pessoa</button>
@@ -31,6 +42,7 @@
 
 /*$(function() {
     $( document ).tooltip();
+    $( "#id_pessoa" ).draggable();
 });
 */
 var root = document.getElementById("heredograma")
