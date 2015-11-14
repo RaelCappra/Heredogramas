@@ -47,6 +47,9 @@
 $(function() {
     $( document ).tooltip();
 	$(".selectable").selectable();
+	$( ".selectable" ).selectable({
+	  selected: mostraMenuDoSelecionado()
+	});
 });
 
 var root = document.getElementById("heredograma")
