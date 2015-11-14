@@ -1,6 +1,4 @@
-$(function() {
-            $( "#id_pessoa" ).draggable({ containment: "parent" });
-        });
+
     
  
 function addPessoa(geracao){
@@ -12,12 +10,15 @@ function addPessoa(geracao){
 	//id="draggable"
 	//class="ui-widget-content"
 	newgen.setAttribute("id", "id_pessoa")
-	
-	newgen.setAttribute("class", "ui-widget-content")
+	//$('#'+openaddress)
+	newgen.setAttribute("class", "ui-widget-content selectable")
 	newgen.appendChild(nome)
+	//newgen.appendChild(nome)
 	//newgen.draggable();
 	//nome.setAttribute("style", "widht:30px")
-	gen.appendChild(newgen)
+	$("#"+geracao).append(newgen);
+	$(".selectable").selectable();
+	
 	
 	
 
