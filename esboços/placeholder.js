@@ -2,21 +2,20 @@
     
  
 function addPessoa(geracao){
-	newgen = document.createElement("div")
-	gen = document.getElementById(geracao)
-	nome  = document.createElement("p")
-	nome.textContent = "nome"
+	newgen = document.createElement("li")
+	gen = document.getElementById("pessoas"+geracao)
+	newgen.textContent = "nome"
 	newgen.setAttribute("title", "Genotipo")
 	//id="draggable"
 	//class="ui-widget-content"
 	newgen.setAttribute("id", "id_pessoa")
 	//$('#'+openaddress)
-	newgen.setAttribute("class", "ui-widget-content selectable")
-	newgen.appendChild(nome)
+	newgen.setAttribute("class", "ui-widget-content")
+	
 	//newgen.appendChild(nome)
 	//newgen.draggable();
 	//nome.setAttribute("style", "widht:30px")
-	$("#"+geracao).append(newgen);
+	$("#pessoas"+geracao).append(newgen);
 	$(".selectable").selectable();
 	
 	

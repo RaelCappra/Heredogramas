@@ -27,19 +27,23 @@
     <div id="heredograma" class="heredograma"> 
         <div class="geracao" id="0">
             <button onclick="addPessoa(0)">+ Pessoa</button>
+            <ol class="selectable" id="pessoas0"></ol>
         </div> 
         <hr>
         <div class="geracao" id="1">
             <button onclick="addPessoa(1)">+ Pessoa</button>
+            <ol class="selectable" id="pessoas1"></ol>
         </div> 
         <hr>
         <div class="geracao" id="2">
             <button onclick="addPessoa(2)">+ Pessoa</button>
+            <ol class="selectable" id="pessoas2"></ol>
         </div> 
         <hr>
         <div class="geracao" id="3">
             <button onclick="addPessoa(3)" title="testan">+ Pessoa</button>
             <button onclick="addGeracao()" id="add-geracao">+ Geração</button>
+            <ol class="selectable" id="pessoas3"></ol>
         </div> 
     </div> 
 <script type="text/javascript">
@@ -47,9 +51,7 @@
 $(function() {
     $( document ).tooltip();
 	$(".selectable").selectable();
-	$( ".selectable" ).selectable({
-	  selected: mostraMenuDoSelecionado()
-	});
+	
 });
 
 var root = document.getElementById("heredograma")
@@ -67,10 +69,13 @@ var root = document.getElementById("heredograma")
         botaoPessoa.setAttribute("onclick", "addPessoa("+(id + 1)+")")
         botaoPessoa.textContent = "+ Pessoa"
 
-
+        pessoas = document.createElement("ol")
+        pessoas.setAttribute("class", "selectable")
+        pessoas.setAttribute("id", "pessoas"+(id + 1))
 
         newgen.appendChild(botaoPessoa)
         newgen.appendChild(botao)
+        newgen.appendChild(pessoas)
 
         hr = document.createElement("hr")
         root.appendChild(hr)
