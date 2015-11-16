@@ -50,7 +50,14 @@
 
 $(function() {
     $( document ).tooltip();
-	$(".selectable").selectable();
+	$( ".selectable" ).selectable({
+      stop: function() {
+        var result = "";
+        $( ".ui-selected", this ).each(function() {
+          alert("");
+        });
+      }
+    });
 	
 });
 

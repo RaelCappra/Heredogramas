@@ -11,12 +11,20 @@ function addPessoa(geracao){
 	newgen.setAttribute("id", "id_pessoa")
 	//$('#'+openaddress)
 	newgen.setAttribute("class", "ui-widget-content")
+	newgen.addEventListener('build', function () {alert("") })
 	
 	//newgen.appendChild(nome)
 	//newgen.draggable();
 	//nome.setAttribute("style", "widht:30px")
 	$("#pessoas"+geracao).append(newgen);
-	$(".selectable").selectable();
+	$( ".selectable" ).selectable({
+      stop: function() {
+        var result = "";
+        $( ".ui-selected", this ).each(function() {
+          alert("");
+        });
+      }
+    });
 	
 	
 	
