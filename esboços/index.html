@@ -46,6 +46,10 @@
             <ol class="selectable" id="pessoas3"></ol>
         </div> 
     </div> 
+
+    <div id="menuPessoa">
+
+    </div>
 <script type="text/javascript">
 
 $(function() {
@@ -54,7 +58,7 @@ $(function() {
       stop: function() {
         var result = "";
         $( ".ui-selected", this ).each(function() {
-          alert("");
+          menuPessoa();
         });
       }
     });

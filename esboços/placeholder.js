@@ -21,7 +21,7 @@ function addPessoa(geracao){
       stop: function() {
         var result = "";
         $( ".ui-selected", this ).each(function() {
-          alert("");
+          menuPessoa();
         });
       }
     });
@@ -51,5 +51,45 @@ function addPessoa(geracao){
 	*/
 	    
 
+
+}
+
+function menuPessoa(){
+	var divMenu = document.getElementById("menuPessoa");
+
+	var opcoesGene = ["Placeholder 1", "Placeholder 2"];
+	var opcoesSexo = ["Masculino", "Feminino"];
+	
+	var selectAlelo1 = document.createElement("select");
+	selectAlelo1.id = "alelo1";
+	var selectAlelo2 = document.createElement("select");
+	selectAlelo2.id = "alelo2";
+
+	divMenu.appendChild(selectAlelo1);
+	divMenu.appendChild(selectAlelo2);
+
+	for (var i = 0; i < opcoesGene.length; i++) {
+	    var option1 = document.createElement("option");
+	    option1.value = i + 1;
+	    option1.text = opcoesGene[i];
+
+	    var option2 = document.createElement("option");
+	    option2.value = i + 1;
+	    option2.text = opcoesGene[i];
+
+	    selectAlelo1.appendChild(option1);
+	    selectAlelo2.appendChild(option2);
+	}
+
+	var selectSexo = document.createElement("select");
+	selectSexo.id = "sexo";
+	divMenu.appendChild(selectSexo);
+
+	for (var i = 0; i < opcoesSexo.length; i++) {
+	    var option = document.createElement("option");
+	    option.value = i + 1;
+	    option.text = opcoesSexo[i];
+	    selectSexo.appendChild(option);
+	}
 
 }
