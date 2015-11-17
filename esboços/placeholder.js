@@ -59,14 +59,10 @@ function menuPessoa(){
 
 
 
-
   	if($('.ui-selected').length > 1) {
-  		$("p:last").removeClass("intro").addClass("main");
+  		$(".ui-selected").removeClass("ui-selected");
 
-	  	$('.ui-selected').each(function () {
-	  		$("#"+$(this).attr("id")).removeClass("ui-selected");
-			
-		});
+	  	
 
 	}else{
     
