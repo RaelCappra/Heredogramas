@@ -67,18 +67,17 @@ function addPessoa(geracao){
 
 function menuPessoa(pessoa){
 	
-
+	var divMenu = document.getElementById("menuPessoa");
+		divMenu.innerHTML = "";
 
 
   	if($('.ui-selected').length > 1) {
   		$(".ui-selected").removeClass("ui-selected");
 
-	  	
 
 	}else{
     
-		var divMenu = document.getElementById("menuPessoa");
-		divMenu.innerHTML = "";
+
 		var opcoesGene = ["Placeholder 1", "Placeholder 2"];
 		var opcoesSexo = ["Masculino", "Feminino", "Indeterminado"];
 		var opcoesAnalise = ["Probando", "Normal"];
