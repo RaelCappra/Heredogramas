@@ -56,7 +56,7 @@ function addPessoa(geracao){
 
 function menuPessoa(){
 	var divMenu = document.getElementById("menuPessoa");
-
+	divMenu.innerHTML = "";
 	var opcoesGene = ["Placeholder 1", "Placeholder 2"];
 	var opcoesSexo = ["Masculino", "Feminino"];
 	
