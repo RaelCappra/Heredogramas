@@ -69,7 +69,8 @@ function menuPessoa(){
 		var divMenu = document.getElementById("menuPessoa");
 		divMenu.innerHTML = "";
 		var opcoesGene = ["Placeholder 1", "Placeholder 2"];
-		var opcoesSexo = ["Masculino", "Feminino"];
+		var opcoesSexo = ["Masculino", "Feminino", "Indeterminado"];
+		var opcoesAnalise = ["Probando", "Normal"];
 		
 		var selectAlelo1 = document.createElement("select");
 		selectAlelo1.id = "alelo1";
@@ -102,6 +103,21 @@ function menuPessoa(){
 		    option.text = opcoesSexo[i];
 		    selectSexo.appendChild(option);
 		}
+
+		var selectAnalise = document.createElement("select");
+		selectAnalise.id = "selectAnalise";
+		divMenu.appendChild(selectAnalise);
+
+		for (var i = 0; i < opcoesAnalise.length; i++) {
+		    var option = document.createElement("option");
+		    option.value = i + 1;
+		    option.text = opcoesAnalise[i];
+
+		    selectAnalise.appendChild(option);
+		    
+		}
+
+
 	}
 
 }
