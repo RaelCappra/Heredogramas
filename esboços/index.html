@@ -1,6 +1,6 @@
 <html>
-<meta charset="UTF-8">
 <head>
+    <meta charset="UTF-8">
     <script src="jquery-1.11.3.min.js"></script>
     <script src="jquery-ui.min.js"></script>
     <script src="placeholder.js"></script>
@@ -91,7 +91,10 @@ function addGeracao(){
     hr = document.createElement("hr")
     root.appendChild(hr)
     root.appendChild(newgen)
-} 
+}
+
+
+
 
 function getXml(xml){
     if (window.XMLHttpRequest){
@@ -106,8 +109,6 @@ function getXml(xml){
     return xmlDocument
 }
 
-var genes
-
 function setupGenes(){
     xmlDocument = getXml("genes.xml")
     selectGenes = document.getElementById("gene")
@@ -120,8 +121,6 @@ function setupGenes(){
         element.textContent = g.getAttribute("name")
         selectGenes.appendChild(element)
     }
-
-
 }
 setupGenes()
 </script>
