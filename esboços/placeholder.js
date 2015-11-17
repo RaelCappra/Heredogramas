@@ -1,14 +1,15 @@
-
-    
+var lastIdPessoa = 0
+var pessoas = {}
  
 function addPessoa(geracao){
+
 	newgen = document.createElement("li")
 	gen = document.getElementById("pessoas"+geracao)
 	newgen.textContent = "nome"
 	newgen.setAttribute("title", "Genotipo")
 	//id="draggable"
 	//class="ui-widget-content"
-	newgen.setAttribute("id", "id_pessoa"+geracao)
+	newgen.setAttribute("id", "pessoa" + ++lastIdPessoa)
 	//$('#'+openaddress)
 	newgen.setAttribute("class", "ui-widget-content")
 	newgen.addEventListener('build', function () {alert("") })
@@ -16,15 +17,25 @@ function addPessoa(geracao){
 	//newgen.appendChild(nome)
 	//newgen.draggable();
 	//nome.setAttribute("style", "widht:30px")
+        pessoa = {
+            geracao: geracao,
+            probando: false,
+            sexo: "masculino",
+            alelo1: 0,
+            alelo2: 0
+        }
+        pessoas[lastIdPessoa] = pessoa
+        
 	$("#pessoas"+geracao).append(newgen);
 	$( ".selectable" ).selectable({
       stop: function() {
         var result = "";
         $( ".ui-selected", this ).each(function() {
-          menuPessoa();
+          menuPessoa(pessoa);
         });
       }
     });
+
 	
 	
 	
@@ -54,7 +65,7 @@ function addPessoa(geracao){
 
 }
 
-function menuPessoa(){
+function menuPessoa(pessoa){
 	
 
 
