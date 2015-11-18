@@ -72,7 +72,7 @@ $(function() {
         $( ".ui-selected", this ).each(function() {
             //console.log(this.id)
             pessoaId = this.id.substring(6)
-            console.log( pessoaId)
+            
             pessoa = pessoas[pessoaId]
             
             menuPessoa(pessoa, alelos)
@@ -120,14 +120,14 @@ var pessoas = {}
 var opcoesSexo = ["Masculino", "Feminino", "Indeterminado"];
  
 function addPessoa(geracao){
-
+	lastIdPessoa++;
 	newgen = document.createElement("li")
 	gen = document.getElementById("pessoas"+geracao)
-	newgen.textContent = "nome"
+	newgen.textContent = lastIdPessoa;
 	newgen.setAttribute("title", "Genotipo")
 	//id="draggable"
 	//class="ui-widget-content"
-	newgen.setAttribute("id", "pessoa" + ++lastIdPessoa)
+	newgen.setAttribute("id", "pessoa" + lastIdPessoa)
 	//$('#'+openaddress)
 	newgen.setAttribute("class", "ui-widget-content")
 	
@@ -141,7 +141,8 @@ function addPessoa(geracao){
             sexo: 0,
             alelo1: 0,
             alelo2: 0,
-            id: lastIdPessoa
+            id: lastIdPessoa,
+            pai: null, mae: null
         }
         pessoas[lastIdPessoa] = pessoa
         
@@ -150,20 +151,9 @@ function addPessoa(geracao){
       stop: function() {
         var result = "";
         $( ".ui-selected", this ).each(function() {
-          closeMenu();
-        });
-      },
-      selected: function() {
-        $( ".ui-selected", this ).each(function() {
-            //console.log(this.id)
-            pessoaId = this.id.substring(6)
-            console.log( pessoaId)
-            pessoa = pessoas[pessoaId]
-            
-            menuPessoa(pessoa, alelos)
+          menuPessoa(pessoa, alelos);
         });
       }
-
     });
 
 	
@@ -215,7 +205,7 @@ function menuPessoa(pessoa, opcoesGene){
 
 
     if (!closeMenu()){
-    	console.log(pessoa)
+    	
         var selectAlelo1 = document.createElement("select");
         selectAlelo1.id = "alelo1";
         var selectAlelo2 = document.createElement("select");
@@ -303,11 +293,66 @@ function menuPessoa(pessoa, opcoesGene){
         $(selectAnalise).change(function(){
             pessoa.probando = selectAnalise[selectAnalise.selectedIndex].value === 'true'
         })
-        
 
+        var pessoasMasculinas = pessoasPorGenero(0);
+        var pessoasFemininas = pessoasPorGenero(1);
+
+        var selectPai = document.createElement("select");
+        selectPai.id = "pai";
+        divMenu.appendChild(selectPai);
+
+        for (var i = 0; i < pessoasMasculinas.length; i++) {
+        	if(pessoasMasculinas[i].id != pessoa.id){
+	            var option = document.createElement("option");
+	            option.value = pessoasMasculinas[i].id;
+	            if (pessoasMasculinas[i].id == pessoa.pai){
+	                option.setAttribute("selected", "true")
+	            }
+	            option.text = pessoasMasculinas[i].id;
+	            selectPai.appendChild(option);
+        	}
+        }
+
+        $(selectPai).change(function(){
+            pessoa.pai = parseInt(selectPai[selectPai.selectedIndex].value)
+        })
+
+        var selectMae = document.createElement("select");
+        selectMae.id = "mae";
+        divMenu.appendChild(selectMae);
+
+        for (var i = 0; i < pessoasFemininas.length; i++) {
+        	if(pessoasFemininas[i].id != pessoa.id){
+	            var option = document.createElement("option");
+	            option.value = pessoasFemininas[i].id;
+	            if (pessoasFemininas[i].id == pessoa.mae){
+	                option.setAttribute("selected", "true")
+	            }
+	            option.text = pessoasFemininas[i].id;
+	            selectMae.appendChild(option);
+        	}
+        }
+
+        $(selectMae).change(function(){
+            pessoa.mae = parseInt(selectMae[selectMae.selectedIndex].value)
+        })
 
     }
 
+
+}
+
+function pessoasPorGenero(genero){
+	pessoasGenero = [];
+
+	for (var i = 1; i <= lastIdPessoa; i++) {
+		
+		if(pessoas[i].sexo == genero){
+			pessoasGenero.push(pessoas[i]);
+
+		}
+	};
+	return pessoasGenero;
 
 }
 
