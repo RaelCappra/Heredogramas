@@ -28,10 +28,26 @@ function setupGenes(){
 
     return xmlDocument
 }
+select = document.getElementById("gene");
 xml = setupGenes()
-console.log(xml.getElementById("42"))
+alelos = [];
 
-$(selectGenes).change(function(){
+console.log(select.options[select.selectedIndex].value);
+
+
+console.log(alelos)
+
+
+$("#gene").change(function(){
+
+    alelosXml = xml.getElementById(select.options[select.selectedIndex].value).getElementsByTagName("alelo")
+    alelos = [];
+    for (var i = alelosXml.length - 1; i >= 0; i--) {
+        alelos.push(alelosXml[i].getAttribute("name"))
+    };
+
+    console.log(select.options[select.selectedIndex].value);
+    console.log($("#gene"))
     /*console.log(xml)
     elementGene = xml.getElementById(this.value)
     localAlelos = []
@@ -203,11 +219,11 @@ function menuPessoa(pessoa, opcoesGene){
         for (var i = 0; i < opcoesGene.length; i++) {
             var option1 = document.createElement("option");
             option1.value = i;
-            option1.text = opcoesGene[i].textComDominancia();
+            option1.text = opcoesGene[i];
 
             var option2 = document.createElement("option");
             option2.value = i;
-            option2.text = opcoesGene[i].textComDominancia();
+            option2.text = opcoesGene[i];
 
             selectAlelo1.appendChild(option1);
             selectAlelo2.appendChild(option2);
