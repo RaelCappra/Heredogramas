@@ -35,5 +35,5 @@ function countInArray(list, fenotipo) {
             delete array[i];
         }
     }
-    possibilidades.push(count);
+    possibilidades["fenotipo"] = count;
 }
