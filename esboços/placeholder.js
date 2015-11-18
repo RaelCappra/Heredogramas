@@ -32,10 +32,7 @@ select = document.getElementById("gene");
 xml = setupGenes()
 alelos = [];
 
-console.log(select.options[select.selectedIndex].value);
 
-
-console.log(alelos)
 
 
 $("#gene").change(function(){
@@ -46,8 +43,7 @@ $("#gene").change(function(){
         alelos.push(alelosXml[i].getAttribute("name"))
     };
 
-    console.log(select.options[select.selectedIndex].value);
-    console.log($("#gene"))
+
     /*console.log(xml)
     elementGene = xml.getElementById(this.value)
     localAlelos = []
@@ -77,8 +73,7 @@ $(function() {
             //console.log(this.id)
             pessoaId = this.id.substring(6)
             pessoa = pessoas[pessoaId]
-            console.log("alelos")
-            console.log(alelos)
+            
             menuPessoa(pessoa, alelos)
         });
       }
@@ -102,13 +97,13 @@ function addGeracao(){
     botaoPessoa.setAttribute("onclick", "addPessoa("+(id + 1)+")")
     botaoPessoa.textContent = "+ Pessoa"
 
-    pessoas = document.createElement("ol")
-    pessoas.setAttribute("class", "selectable")
-    pessoas.setAttribute("id", "pessoas"+(id + 1))
+    olPessoas = document.createElement("ol")
+    olPessoas.setAttribute("class", "selectable ui-selectable")
+    olPessoas.setAttribute("id", "pessoas"+(id + 1))
 
     newgen.appendChild(botaoPessoa)
     newgen.appendChild(botao)
-    newgen.appendChild(pessoas)
+    newgen.appendChild(olPessoas)
 
     hr = document.createElement("hr")
     root.appendChild(hr)
@@ -134,7 +129,7 @@ function addPessoa(geracao){
 	newgen.setAttribute("id", "pessoa" + ++lastIdPessoa)
 	//$('#'+openaddress)
 	newgen.setAttribute("class", "ui-widget-content")
-	newgen.addEventListener('build', function () {alert("") })
+	
 	
 	//newgen.appendChild(nome)
 	//newgen.draggable();
@@ -191,6 +186,7 @@ function addPessoa(geracao){
 //return: se algum menu foi de fato fechado
 function closeMenu(){
     if($('.ui-selected').length > 1) {
+    
         $(".ui-selected").removeClass("ui-selected");
         return true;
     }else{
@@ -200,7 +196,7 @@ function closeMenu(){
 }
 
 function menuPessoa(pessoa, opcoesGene){
-    console.log("id: " + pessoa.id)
+    //console.log("id: " + pessoa.id)
     
     var divMenu = document.getElementById("menuPessoa");
         divMenu.innerHTML = "";
@@ -214,7 +210,7 @@ function menuPessoa(pessoa, opcoesGene){
 
         divMenu.appendChild(selectAlelo1);
         divMenu.appendChild(selectAlelo2);
-        console.log(opcoesGene)
+        
 
         for (var i = 0; i < opcoesGene.length; i++) {
             var option1 = document.createElement("option");
@@ -248,7 +244,7 @@ function menuPessoa(pessoa, opcoesGene){
         selectSexo.id = "sexo";
         divMenu.appendChild(selectSexo);
         
-        console.log("sexo: " + pessoa.sexo)
+       
 
         for (var i = 0; i < opcoesSexo.length; i++) {
             var option = document.createElement("option");
@@ -279,7 +275,7 @@ function menuPessoa(pessoa, opcoesGene){
 
         optionFalse.value = false;
         optionFalse.text = opcoesAnalise[false];
-        console.log("probando: " + pessoa.probando)
+       // console.log("probando: " + pessoa.probando)
         if (pessoa.probando){
             optionTrue.setAttribute("selected", "true")
         }
@@ -294,6 +290,7 @@ function menuPessoa(pessoa, opcoesGene){
         $(selectAnalise).change(function(){
             pessoa.probando = selectAnalise[selectAnalise.selectedIndex].value === 'true'
         })
+        console.log(pessoas)
 
 
     }
