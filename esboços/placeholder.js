@@ -220,14 +220,28 @@ function menuPessoa(pessoa, opcoesGene){
             var option1 = document.createElement("option");
             option1.value = i;
             option1.text = opcoesGene[i];
+            if (i == pessoa.alelo1){
+                option1.setAttribute("selected", "true")
+            }
 
             var option2 = document.createElement("option");
             option2.value = i;
             option2.text = opcoesGene[i];
+            if (i == pessoa.alelo2){
+                option2.setAttribute("selected", "true")
+            }
 
             selectAlelo1.appendChild(option1);
             selectAlelo2.appendChild(option2);
         }
+
+        $(selectAlelo2).change(function(){
+        	pessoa.alelo2 = selectAlelo2[selectAlelo2.selectedIndex].value
+        })
+
+        $(selectAlelo1).change(function(){
+        	pessoa.alelo1 = selectAlelo1[selectAlelo1.selectedIndex].value
+        })
 
         //definindo a combobox do sexo
         var selectSexo = document.createElement("select");
@@ -280,6 +294,8 @@ function menuPessoa(pessoa, opcoesGene){
         $(selectAnalise).change(function(){
             pessoa.probando = selectAnalise[selectAnalise.selectedIndex].value === 'true'
         })
+
+
     }
 
 
