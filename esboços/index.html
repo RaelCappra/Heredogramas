@@ -58,9 +58,19 @@ $(function() {
       stop: function() {
         var result = "";
         $( ".ui-selected", this ).each(function() {
-          menuPessoa();
+          closeMenu();
+        });
+      },
+      start: function() {
+        $( ".ui-selected", this ).each(function() {
+            //console.log(this.id)
+            pessoaId = this.id.substring(6)
+            pessoa = pessoas[pessoaId]
+            console.log(pessoas)
+            menuPessoa(pessoa)
         });
       }
+
     });
 	
 });
