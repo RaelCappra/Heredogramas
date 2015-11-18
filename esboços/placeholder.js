@@ -1,5 +1,5 @@
 
-var alelos
+var alelos = []
 function getXml(xml){
     if (window.XMLHttpRequest){
         xmlhttp=new XMLHttpRequest()
@@ -32,7 +32,7 @@ xml = setupGenes()
 console.log(xml.getElementById("42"))
 
 $(selectGenes).change(function(){
-    console.log(this.value)
+    /*console.log(xml)
     elementGene = xml.getElementById(this.value)
     localAlelos = []
     for (elementAlelo in elementGene.children){
@@ -45,7 +45,7 @@ $(selectGenes).change(function(){
         }
         localAlelos.push(alelo)
     }
-    alelos = localAlelos
+    alelos = localAlelos*/
 })
 $(function() {
     $( document ).tooltip();
