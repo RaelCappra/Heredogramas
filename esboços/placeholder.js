@@ -1,5 +1,7 @@
 var lastIdPessoa = 0
 var pessoas = {}
+var opcoesGene = ["Placeholder 1", "Placeholder 2"];
+var opcoesSexo = ["Masculino", "Feminino", "Indeterminado"];
  
 function addPessoa(geracao){
 
@@ -20,7 +22,7 @@ function addPessoa(geracao){
         pessoa = {
             geracao: geracao,
             probando: false,
-            sexo: "masculino",
+            sexo: 0,
             alelo1: 0,
             alelo2: 0
         }
@@ -78,8 +80,6 @@ function menuPessoa(pessoa){
 	}else{
     
 
-		var opcoesGene = ["Placeholder 1", "Placeholder 2"];
-		var opcoesSexo = ["Masculino", "Feminino", "Indeterminado"];
 		var opcoesAnalise = ["Probando", "Normal"];
 		
 		var selectAlelo1 = document.createElement("select");
@@ -109,7 +109,10 @@ function menuPessoa(pessoa){
 
 		for (var i = 0; i < opcoesSexo.length; i++) {
 		    var option = document.createElement("option");
-		    option.value = i + 1;
+		    option.value = i;
+                    if (i == pessoa.sexo){
+                        option.setAttribute("selected", "true")
+                    }
 		    option.text = opcoesSexo[i];
 		    selectSexo.appendChild(option);
 		}
@@ -120,7 +123,7 @@ function menuPessoa(pessoa){
 
 		for (var i = 0; i < opcoesAnalise.length; i++) {
 		    var option = document.createElement("option");
-		    option.value = i + 1;
+		    option.value = i;
 		    option.text = opcoesAnalise[i];
 
 		    selectAnalise.appendChild(option);
