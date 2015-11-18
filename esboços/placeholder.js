@@ -72,6 +72,7 @@ $(function() {
         $( ".ui-selected", this ).each(function() {
             //console.log(this.id)
             pessoaId = this.id.substring(6)
+            console.log( pessoaId)
             pessoa = pessoas[pessoaId]
             
             menuPessoa(pessoa, alelos)
@@ -149,9 +150,20 @@ function addPessoa(geracao){
       stop: function() {
         var result = "";
         $( ".ui-selected", this ).each(function() {
-          menuPessoa(pessoa, alelos);
+          closeMenu();
+        });
+      },
+      selected: function() {
+        $( ".ui-selected", this ).each(function() {
+            //console.log(this.id)
+            pessoaId = this.id.substring(6)
+            console.log( pessoaId)
+            pessoa = pessoas[pessoaId]
+            
+            menuPessoa(pessoa, alelos)
         });
       }
+
     });
 
 	
@@ -203,6 +215,7 @@ function menuPessoa(pessoa, opcoesGene){
 
 
     if (!closeMenu()){
+    	console.log(pessoa)
         var selectAlelo1 = document.createElement("select");
         selectAlelo1.id = "alelo1";
         var selectAlelo2 = document.createElement("select");
@@ -232,11 +245,11 @@ function menuPessoa(pessoa, opcoesGene){
         }
 
         $(selectAlelo2).change(function(){
-        	pessoa.alelo2 = selectAlelo2[selectAlelo2.selectedIndex].value
+        	pessoa.alelo2 = parseInt(selectAlelo2[selectAlelo2.selectedIndex].value)
         })
 
         $(selectAlelo1).change(function(){
-        	pessoa.alelo1 = selectAlelo1[selectAlelo1.selectedIndex].value
+        	pessoa.alelo1 = parseInt(selectAlelo1[selectAlelo1.selectedIndex].value)
         })
 
         //definindo a combobox do sexo
@@ -257,7 +270,7 @@ function menuPessoa(pessoa, opcoesGene){
         }
 
         $(selectSexo).change(function(){
-            pessoa.sexo = selectSexo[selectSexo.selectedIndex].value
+            pessoa.sexo = parseInt(selectSexo[selectSexo.selectedIndex].value)
         })
         
 
@@ -290,7 +303,7 @@ function menuPessoa(pessoa, opcoesGene){
         $(selectAnalise).change(function(){
             pessoa.probando = selectAnalise[selectAnalise.selectedIndex].value === 'true'
         })
-        console.log(pessoas)
+        
 
 
     }
