@@ -80,7 +80,6 @@ function menuPessoa(pessoa){
 	}else{
     
 
-		var opcoesAnalise = ["Probando", "Normal"];
 		
 		var selectAlelo1 = document.createElement("select");
 		selectAlelo1.id = "alelo1";
@@ -121,10 +120,18 @@ function menuPessoa(pessoa){
 		selectAnalise.id = "selectAnalise";
 		divMenu.appendChild(selectAnalise);
 
+		var opcoesAnalise = ["Probando", "Normal"];
 		for (var i = 0; i < opcoesAnalise.length; i++) {
 		    var option = document.createElement("option");
 		    option.value = i;
 		    option.text = opcoesAnalise[i];
+                    if (pessoa.probando){
+                        if (i == 0)
+                            option.setAttribute("selected", "true")
+                    }
+                    else if (i == 1){
+                        option.setAttribute("selected", "true")
+                    }
 
 		    selectAnalise.appendChild(option);
 		    
