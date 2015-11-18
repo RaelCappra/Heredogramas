@@ -72,8 +72,11 @@ function addPessoa(geracao){
 function closeMenu(){
     if($('.ui-selected').length > 1) {
         $(".ui-selected").removeClass("ui-selected");
+        return true;
+    }else{
+        return false;
     }   
-    return true
+    
 }
 
 function menuPessoa(pessoa){
