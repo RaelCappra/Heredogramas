@@ -15,16 +15,10 @@ function calcProbabilidade(probando, gene){
 		for (var i = 0; i < list.length; i++) {
 			countInArray(list, list[i]);
 		};
-		
-		var count = 0;
-		for (var i = 0; i < possibilidades.length; i++) {
-			count++;
-
-		};
 
 		for (var i = 0; i < possibilidades.length; i++) {
 
-			possibilidades[i] = possibilidades[i]/ possibilidades.length;
+			possibilidades[i] = possibilidades[i]/ list.length;
 
 		};
 		return possibilidades;
