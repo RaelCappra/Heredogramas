@@ -3,7 +3,6 @@
     <meta charset="UTF-8">
     <script src="jquery-1.11.3.min.js"></script>
     <script src="jquery-ui.min.js"></script>
-    <script src="placeholder.js"></script>
     <link rel="stylesheet" href="jquery-ui.min.css">
     
     
@@ -50,90 +49,7 @@
     <div id="menuPessoa">
 
     </div>
-<script type="text/javascript">
-
-$(function() {
-    $( document ).tooltip();
-	$( ".selectable" ).selectable({
-      stop: function() {
-        var result = "";
-        $( ".ui-selected", this ).each(function() {
-          closeMenu();
-        });
-      },
-      selected: function() {
-        $( ".ui-selected", this ).each(function() {
-            //console.log(this.id)
-            pessoaId = this.id.substring(6)
-            pessoa = pessoas[pessoaId]
-            console.log(pessoas)
-            menuPessoa(pessoa)
-        });
-      }
-
-    });
-	
-});
-
-var root = document.getElementById("heredograma")
-
-function addGeracao(){
-    botao = document.getElementById("add-geracao")
-    newgen = document.createElement("div")
-    newgen.setAttribute("class", "geracao")
-
-    id = parseInt(botao.parentElement.id)
-    newgen.setAttribute("id", id + 1)
-
-
-    botaoPessoa = document.createElement("button")
-    botaoPessoa.setAttribute("onclick", "addPessoa("+(id + 1)+")")
-    botaoPessoa.textContent = "+ Pessoa"
-
-    pessoas = document.createElement("ol")
-    pessoas.setAttribute("class", "selectable")
-    pessoas.setAttribute("id", "pessoas"+(id + 1))
-
-    newgen.appendChild(botaoPessoa)
-    newgen.appendChild(botao)
-    newgen.appendChild(pessoas)
-
-    hr = document.createElement("hr")
-    root.appendChild(hr)
-    root.appendChild(newgen)
-}
-
-
-
-
-function getXml(xml){
-    if (window.XMLHttpRequest){
-        xmlhttp=new XMLHttpRequest()
-    }
-    else{
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP")
-    }
-    xmlhttp.open("GET", xml, false)
-    xmlhttp.send()
-    xmlDocument=xmlhttp.responseXML
-    return xmlDocument
-}
-
-function setupGenes(){
-    xmlDocument = getXml("genes.xml")
-    selectGenes = document.getElementById("gene")
-
-    genes = xmlDocument.getElementsByTagName("gene")
-    for (i = 0; i < genes.length; i++){
-        g = genes[i]
-        element = document.createElement("option")
-        element.setAttribute("value", g.getAttribute("id"))
-        element.textContent = g.getAttribute("name")
-        selectGenes.appendChild(element)
-    }
-}
-setupGenes()
-</script>
+<script src="placeholder.js"></script>
 </body>
 </html>
 

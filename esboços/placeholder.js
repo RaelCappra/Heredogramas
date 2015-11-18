@@ -1,6 +1,110 @@
+
+var alelos
+function getXml(xml){
+    if (window.XMLHttpRequest){
+        xmlhttp=new XMLHttpRequest()
+    }
+    else{
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP")
+    }
+    xmlhttp.open("GET", xml, false)
+    xmlhttp.send()
+    xmlDocument=xmlhttp.responseXML
+    return xmlDocument
+}
+
+function setupGenes(){
+    xmlDocument = getXml("genes.xml")
+    selectGenes = document.getElementById("gene")
+
+    genes = xmlDocument.getElementsByTagName("gene")
+    for (i = 0; i < genes.length; i++){
+        g = genes[i]
+        element = document.createElement("option")
+        element.setAttribute("value", g.getAttribute("id"))
+        element.textContent = g.getAttribute("name")
+        selectGenes.appendChild(element)
+    }
+
+    return xmlDocument
+}
+xml = setupGenes()
+console.log(xml.getElementById("42"))
+
+$(selectGenes).change(function(){
+    console.log(this.value)
+    elementGene = xml.getElementById(this.value)
+    localAlelos = []
+    for (elementAlelo in elementGene.children){
+        console.log(elementAlelo)
+        alelo = {}
+        alelo.text = elementAlelo.getAttribute("name")
+        alelo.dominancia = elementAlelo.getAttribute("dominancia")
+        alelo.textComDominancia = function(){
+            return this.text + (dominancia == "1" ? " (R)" : " (D)")
+        }
+        localAlelos.push(alelo)
+    }
+    alelos = localAlelos
+})
+$(function() {
+    $( document ).tooltip();
+	$( ".selectable" ).selectable({
+      stop: function() {
+        var result = "";
+        $( ".ui-selected", this ).each(function() {
+          closeMenu();
+        });
+      },
+      selected: function() {
+        $( ".ui-selected", this ).each(function() {
+            //console.log(this.id)
+            pessoaId = this.id.substring(6)
+            pessoa = pessoas[pessoaId]
+            console.log("alelos")
+            console.log(alelos)
+            menuPessoa(pessoa, alelos)
+        });
+      }
+
+    });
+	
+});
+
+var root = document.getElementById("heredograma")
+
+function addGeracao(){
+    botao = document.getElementById("add-geracao")
+    newgen = document.createElement("div")
+    newgen.setAttribute("class", "geracao")
+
+    id = parseInt(botao.parentElement.id)
+    newgen.setAttribute("id", id + 1)
+
+
+    botaoPessoa = document.createElement("button")
+    botaoPessoa.setAttribute("onclick", "addPessoa("+(id + 1)+")")
+    botaoPessoa.textContent = "+ Pessoa"
+
+    pessoas = document.createElement("ol")
+    pessoas.setAttribute("class", "selectable")
+    pessoas.setAttribute("id", "pessoas"+(id + 1))
+
+    newgen.appendChild(botaoPessoa)
+    newgen.appendChild(botao)
+    newgen.appendChild(pessoas)
+
+    hr = document.createElement("hr")
+    root.appendChild(hr)
+    root.appendChild(newgen)
+}
+
+
+
+
 var lastIdPessoa = 0
 var pessoas = {}
-var opcoesGene = ["Placeholder 1", "Placeholder 2"];
+//var opcoesGene = ["Placeholder 1", "Placeholder 2"];
 var opcoesSexo = ["Masculino", "Feminino", "Indeterminado"];
  
 function addPessoa(geracao){
@@ -34,7 +138,7 @@ function addPessoa(geracao){
       stop: function() {
         var result = "";
         $( ".ui-selected", this ).each(function() {
-          menuPessoa(pessoa);
+          menuPessoa(pessoa, alelos);
         });
       }
     });
@@ -79,7 +183,7 @@ function closeMenu(){
     
 }
 
-function menuPessoa(pessoa){
+function menuPessoa(pessoa, opcoesGene){
     console.log("id: " + pessoa.id)
     
     var divMenu = document.getElementById("menuPessoa");
@@ -94,15 +198,16 @@ function menuPessoa(pessoa){
 
         divMenu.appendChild(selectAlelo1);
         divMenu.appendChild(selectAlelo2);
+        console.log(opcoesGene)
 
         for (var i = 0; i < opcoesGene.length; i++) {
             var option1 = document.createElement("option");
-            option1.value = i + 1;
-            option1.text = opcoesGene[i];
+            option1.value = i;
+            option1.text = opcoesGene[i].textComDominancia();
 
             var option2 = document.createElement("option");
-            option2.value = i + 1;
-            option2.text = opcoesGene[i];
+            option2.value = i;
+            option2.text = opcoesGene[i].textComDominancia();
 
             selectAlelo1.appendChild(option1);
             selectAlelo2.appendChild(option2);
@@ -165,3 +270,11 @@ function menuPessoa(pessoa){
 }
 
 
+function haProbando(pessoas){
+    for (pessoa in pessoas){
+        if (pessoa.probando){
+            return true
+        }
+    }
+    return false
+}
