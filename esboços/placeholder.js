@@ -31,6 +31,7 @@ function setupGenes(){
 select = document.getElementById("gene");
 xml = setupGenes()
 alelos = [];
+cromossomoGene = "";
 
 
 
@@ -39,6 +40,8 @@ $("#gene").change(function(){
 
     alelosXml = xml.getElementById(select.options[select.selectedIndex].value).getElementsByTagName("alelo")
     alelos = [];
+    cromossomoGene = "";
+    cromossomoGene = xml.getElementById(select.options[select.selectedIndex].value).getAttribute("cromossomo");
     for (var i = alelosXml.length - 1; i >= 0; i--) {
         alelos.push(alelosXml[i].getAttribute("name"))
     };
@@ -75,7 +78,7 @@ $(function() {
             
             pessoa = pessoas[pessoaId]
             
-            menuPessoa(pessoa, alelos)
+            menuPessoa(pessoa, alelos, cromossomoGene)
         });
       }
 
@@ -174,7 +177,7 @@ function addPessoa(geracao){
       stop: function() {
         var result = "";
         $( ".ui-selected", this ).each(function() {
-          menuPessoa(pessoa, alelos);
+          menuPessoa(pessoa, alelos, cromossomoGene);
         });
       }
     });
@@ -220,7 +223,7 @@ function closeMenu(){
     
 }
 
-function menuPessoa(pessoa, opcoesGene){
+function menuPessoa(pessoa, opcoesGene, cromossomo){
     //console.log("id: " + pessoa.id)
     
     var divMenu = document.getElementById("menuPessoa");
@@ -237,25 +240,65 @@ function menuPessoa(pessoa, opcoesGene){
         divMenu.appendChild(selectAlelo1);
         divMenu.appendChild(selectAlelo2);
         
-
-        for (var i = 0; i < opcoesGene.length; i++) {
-            var option1 = document.createElement("option");
-            option1.value = i;
-            option1.text = opcoesGene[i];
-            if (i == pessoa.alelo1){
-                option1.setAttribute("selected", "true")
-            }
+        if(cromossomo == "X"){
+        	var option1 = document.createElement("option");
+        	option1.value = 2;
+            option1.text = "Y";
+			if (2 == pessoa.alelo1){
+	                option1.setAttribute("selected", "true")
+	        }
 
             var option2 = document.createElement("option");
-            option2.value = i;
-            option2.text = opcoesGene[i];
-            if (i == pessoa.alelo2){
-                option2.setAttribute("selected", "true")
-            }
+        	option2.value = 2;
+            option2.text = "Y";
+             if (2 == pessoa.alelo2){
+	                option2.setAttribute("selected", "true")
+	        }
+            selectAlelo1.appendChild(option1);
+            selectAlelo2.appendChild(option2);
+
+        }
+
+        if(cromossomo == "Y"){
+        	var option1 = document.createElement("option");
+        	option1.value = 2;
+            option1.text = "X";
+            if (2 == pessoa.alelo1){
+	                option1.setAttribute("selected", "true")
+	        }
+
+            var option2 = document.createElement("option");
+        	option2.value = 2;
+            option2.text = "X";
+             if (2 == pessoa.alelo2){
+	                option2.setAttribute("selected", "true")
+	            }
 
             selectAlelo1.appendChild(option1);
             selectAlelo2.appendChild(option2);
         }
+
+
+       
+	        for (var i = 0; i < opcoesGene.length; i++) {
+	            var option1 = document.createElement("option");
+	            option1.value = i;
+	            option1.text = opcoesGene[i];
+	            if (i == pessoa.alelo1){
+	                option1.setAttribute("selected", "true")
+	            }
+
+	            var option2 = document.createElement("option");
+	            option2.value = i;
+	            option2.text = opcoesGene[i];
+	            if (i == pessoa.alelo2){
+	                option2.setAttribute("selected", "true")
+	            }
+
+	            selectAlelo1.appendChild(option1);
+	            selectAlelo2.appendChild(option2);
+	        }
+    	
 
         $(selectAlelo2).change(function(){
         	pessoa.alelo2 = parseInt(selectAlelo2[selectAlelo2.selectedIndex].value)
