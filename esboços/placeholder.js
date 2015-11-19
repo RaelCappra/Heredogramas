@@ -104,7 +104,28 @@ function calculaProbando(){
 	
 
 	probs = calcProbabilidade(probando[0], gene);
-	probabilidadesTexto = "Homozigoto recessivo = "+(probs["0/0"]*100)+"% \n "+ "Heterozigoto = "+(probs["1/0"]*100)+"% \n "+" Homozigoto dominante = "+(probs["1/1"]*100)+"% ";
+	probabilidadesTexto = "";
+	if(gene.getAttribute("cromossomo") == "A"){
+		probabilidadesTexto = "Homozigoto recessivo = "+(probs["0/0"]*100)+"% \n "+ "Heterozigoto = "+(probs["1/0"]*100)+"% \n "+" Homozigoto dominante = "+(probs["1/1"]*100)+"% ";
+	
+	}
+	if(gene.getAttribute("cromossomo") == "X" && probando[0].sexo == 0){
+		probabilidadesTexto = "XafetadoY = "+(probs["0/0"]*100)+"% \n "+ "XsaudavelY = "+(probs["1/0"]*100)+"%";
+	}
+
+	if(gene.getAttribute("cromossomo") == "X" && probando[0].sexo == 1){
+		probabilidadesTexto = "XafetadoXafetado = "+(probs["0/0"]*100)+"% \n "+ "XsaudavelXafetado = "+(probs["1/0"]*100)+"% \n "+" XsaudavelXsaudavel = "+(probs["1/1"]*100)+"% ";
+	
+	}
+
+	if(gene.getAttribute("cromossomo") == "Y" && probando[0].sexo == 0){
+		probabilidadesTexto = "XYafetado = "+(probs["0/0"]*100)+"% \n "+ "XYsaudavel = "+(probs["1/1"]*100)+"%";
+	}
+
+	if(gene.getAttribute("cromossomo") == "Y" && probando[0].sexo == 1){
+		probabilidadesTexto = "100% XX, não é afetado pela caracteristica pois não tem alelo Y"
+	}
+	
 	alert(probabilidadesTexto)
 
 }
