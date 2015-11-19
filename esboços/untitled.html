@@ -16,9 +16,12 @@
   #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
   </style>
   <script>
-  $(function() {
-    $( "#selectable" ).selectable();
-  });
+    var possibilidades = {};
+
+    possibilidades["0/0"] = 0;
+    possibilidades["1/0"] = 0;
+    possibilidades["1/1"] = 0;
+    console.log(possibilidades)
   </script>
 </head>
 <body>

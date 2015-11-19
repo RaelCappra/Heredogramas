@@ -83,6 +83,27 @@ $(function() {
 	
 });
 
+function calculaProbando(){
+	var probando = [];
+	
+		
+	for (var i = 1; i <= lastIdPessoa; i++) {
+		
+		if(pessoas[i].probando){
+			probando.push(pessoas[i]);
+
+		}
+	};
+    
+	
+	xmlDocument = getXml("genes.xml")
+	gene = xml.getElementById(select.options[select.selectedIndex].value);
+	
+
+	calcProbabilidade(probando[0], gene)
+
+}
+
 var root = document.getElementById("heredograma")
 
 function addGeracao(){
@@ -157,7 +178,7 @@ function addPessoa(geracao){
     });
 
 	
-	
+
 	
 
 	/*
@@ -301,6 +322,13 @@ function menuPessoa(pessoa, opcoesGene){
         selectPai.id = "pai";
         divMenu.appendChild(selectPai);
 
+        var option = document.createElement("option");
+	    option.value = "";
+	    option.setAttribute("disabled", "true")
+	    option.setAttribute("selected", "true")
+	    option.text = "--selecione--";
+	    selectPai.appendChild(option);
+
         for (var i = 0; i < pessoasMasculinas.length; i++) {
         	if(pessoasMasculinas[i].id != pessoa.id){
 	            var option = document.createElement("option");
@@ -312,6 +340,7 @@ function menuPessoa(pessoa, opcoesGene){
 	            selectPai.appendChild(option);
         	}
         }
+        
 
         $(selectPai).change(function(){
             pessoa.pai = parseInt(selectPai[selectPai.selectedIndex].value)
@@ -320,6 +349,13 @@ function menuPessoa(pessoa, opcoesGene){
         var selectMae = document.createElement("select");
         selectMae.id = "mae";
         divMenu.appendChild(selectMae);
+
+        var option = document.createElement("option");
+	    option.value = "";
+	    option.setAttribute("disabled", "true")
+	    option.setAttribute("selected", "true")
+	    option.text = "--selecione--";
+	    selectMae.appendChild(option);
 
         for (var i = 0; i < pessoasFemininas.length; i++) {
         	if(pessoasFemininas[i].id != pessoa.id){
@@ -332,11 +368,11 @@ function menuPessoa(pessoa, opcoesGene){
 	            selectMae.appendChild(option);
         	}
         }
+        
 
         $(selectMae).change(function(){
             pessoa.mae = parseInt(selectMae[selectMae.selectedIndex].value)
         })
-
     }
 
 
