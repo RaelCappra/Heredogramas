@@ -100,7 +100,9 @@ function calculaProbando(){
 	gene = xml.getElementById(select.options[select.selectedIndex].value);
 	
 
-	calcProbabilidade(probando[0], gene)
+	probs = calcProbabilidade(probando[0], gene);
+	probabilidadesTexto = "Homozigoto recessivo = "+(probs["0/0"]*100)+"% \n "+ "Heterozigoto = "+(probs["1/0"]*100)+"% \n "+" Homozigoto dominante = "+(probs["1/1"]*100)+"% ";
+	alert(probabilidadesTexto)
 
 }
 
