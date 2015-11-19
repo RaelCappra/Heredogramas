@@ -10,7 +10,7 @@ xsi:schemaLocation="http://www.w3schools.com genes.xsd">
         <alelo dominancia="0" name="Xafetado"></alelo>
     </gene>
 
-    <gene name="exemploAutossomico" cromossomo="A" id="1">
+    <gene name="exemploAutossomicoRecessivo" cromossomo="A" id="1">
         <alelo dominancia="1" name="saudavel"></alelo>
         <alelo dominancia="0" name="afetado"></alelo>
     </gene>
