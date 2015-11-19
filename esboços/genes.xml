@@ -15,8 +15,8 @@ xsi:schemaLocation="http://www.w3schools.com genes.xsd">
         <alelo dominancia="0" name="afetado"></alelo>
     </gene>
 
-    <gene name="geneTeste" cromossomo="A" id="2">
-        <alelo dominancia="1" name="foo"></alelo>
-        <alelo dominancia="0" name="bar"></alelo>
+    <gene name="geneTeste" cromossomo="Y" id="2">
+        <alelo dominancia="1" name="Ysaudavel"></alelo>
+        <alelo dominancia="0" name="Yafetado"></alelo>
     </gene>
 </genes>

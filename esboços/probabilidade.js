@@ -9,6 +9,77 @@ function calcProbabilidade(probando, gene){
 	possibilidades["1/0"] = 0;
 	possibilidades["1/1"] = 0;
 
+	if(gene.getAttribute("cromossomo") == "Y"){
+		var tempList = [];
+
+
+		if(probando.sexo == 1){
+
+			tempList.push(pessoas[probando.pai].alelo1+"/"+pessoas[probando.mae].alelo1)
+			tempList.push(pessoas[probando.pai].alelo2+"/"+pessoas[probando.mae].alelo1)
+			tempList.push(pessoas[probando.pai].alelo1+"/"+pessoas[probando.mae].alelo2)
+			tempList.push(pessoas[probando.pai].alelo2+"/"+pessoas[probando.mae].alelo2)
+
+			for (var i = 0; i < tempList.length; i++) {
+				if(!tempList[i].contains("0") && !tempList[i].contains("1") ){
+					list.push(tempList[i]);
+				}
+			};
+
+			for (var i = 0; i < list.length; i++) {
+
+		        if (list[i] == "2/2") {
+		            possibilidades["1/1"]++
+		        }
+			};
+
+			var total =  possibilidades["1/1"];
+			possibilidades["1/1"] = possibilidades["1/1"]/total;
+			console.log(possibilidades)	;
+				
+			return possibilidades;
+		}
+
+		if(probando.sexo == 0){
+			console.log(possibilidades)
+
+			tempList.push(pessoas[probando.pai].alelo1+"/"+pessoas[probando.mae].alelo1)
+			tempList.push(pessoas[probando.pai].alelo2+"/"+pessoas[probando.mae].alelo1)
+			tempList.push(pessoas[probando.pai].alelo1+"/"+pessoas[probando.mae].alelo2)
+			tempList.push(pessoas[probando.pai].alelo2+"/"+pessoas[probando.mae].alelo2)
+			console.log(tempList)
+
+			for (var i = 0; i < tempList.length; i++) {
+				if(tempList[i].contains("0") || tempList[i].contains("1")){
+					list.push(tempList[i]);
+				}
+			};
+			
+
+			for (var i = 0; i < list.length; i++) {
+				if (list[i] == "2/0" || list[i] == "0/2") {
+		            possibilidades["0/0"]++
+		        }
+
+		        if (list[i] == "2/1" || list[i] == "1/2") {
+		            possibilidades["1/1"]++
+		        }
+			};
+
+			var total =  possibilidades["1/1"] +  possibilidades["0/0"];
+			possibilidades["1/1"] = possibilidades["1/1"]/total;
+			possibilidades["0/0"] = possibilidades["0/0"]/total; 	
+			console.log(possibilidades)	
+			return possibilidades;
+		}
+
+
+
+		//crossing over default com o genero envolvido
+		//combinações = geneAPai/geneAMae, geneAPai/geneBMae, geneBPAI/geneAMae, geneBPai/geneBMae
+		
+	}
+
 	if(gene.getAttribute("cromossomo") == "X"){
 		var tempList = [];
 
