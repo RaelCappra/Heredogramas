@@ -1,0 +1,49 @@
+body{ margin: 0px; padding: 0px; color: #343434; font-family: "Arial"}
+.header{
+	height: 200px;
+	width: 100%;
+	background-color: #cacaca;
+	padding: 0px;
+	border: 1px solid #343434;
+}
+
+.header img{
+	margin-top: -10px;
+	height: 200px;
+	float: right;
+}
+.title{
+	color: #bc0000;
+	font-size: 25px;
+}
+.header p{
+	padding: 10px;
+	float: left;
+	font-family: "Arial";
+	font-size: 20px;
+}
+.content{
+	margin: auto;
+	height: 100%;
+	width: 700px;
+}
+.content-title{
+	font-size: 52px;
+}
+
+.content-subtitle{
+	font-size: 32px;
+}
+#button-holder{
+	width: 100%;
+}
+#button{
+	margin-left: 300px;
+	border: 1px solid #cacaca;
+	background-color: #bc0000;
+	width: 100px;
+	border-radius: 10px;
+	color: white;
+	position: absolute;
+	box-shadow: none;
+}
